@@ -6,6 +6,7 @@ format:
     embed-resources: true
 ---
 
+Q1 Read in the data
 ```{r}
 # download file
 download.file(
@@ -15,26 +16,43 @@ download.file(
   timeout  = 60
 )
 met <- data.table::fread(file.path("met_all.gz"))
+```
 
+Q2 Check the dimensions, headers, footers.
+```{r}
 dim(met)
 head(met)
 tail(met)
-str(met)
+```
 
+Q3
+```{r}
+str(met)
+```
+
+Q4 Take a closer look
+```{r}
 table(met$year)
 table(met$day)
 table(met$hour)
 summary(met$elev)
 
-# replace 9999 with NA
+
+
 met[met$elev == 9999.0] <- NA
 summary(met$elev)
 
 summary(met$temp)
+```
+Q5
+```{r}
 met <- met[temp>-40]
 met2 <- met[order(temp)]
 head(met2)
+```
 
+Q6
+```{r}
 elev <- met[elev==max(elev), ]
 summary(elev)
 cor(elev$temp, elev$wind.sp, use="complete")
@@ -42,7 +60,10 @@ cor(elev$temp, elev$hour, use="complete")
 cor(elev$wind.sp, elev$day, use="complete")
 cor(elev$wind.sp, elev$hour, use="complete")
 cor(elev$temp, elev$day, use="complete")
+```
 
+Q7 Exploratory graphs
+```{r}
 hist(met$elev,breaks = 100)
 hist(met$temp)
 hist(met$wind.sp)
@@ -63,3 +84,5 @@ plot(elev$date, elev$wind.sp,type="l")
 
 
 ```
+
+
