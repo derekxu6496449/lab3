@@ -9,6 +9,7 @@ format:
 Q1 Read in the data
 ```{r}
 # download file
+library(R.utils)
 download.file(
   "https://raw.githubusercontent.com/USCbiostats/data-science-data/master/02_met/met_all.gz",
   destfile = file.path("met_all.gz"),
