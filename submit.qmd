@@ -10,11 +10,11 @@ format:
 # download file
 download.file(
   "https://raw.githubusercontent.com/USCbiostats/data-science-data/master/02_met/met_all.gz",
-  destfile = file.path( "met_all.gz"),
+  destfile = file.path("met_all.gz"),
   method   = "libcurl",
   timeout  = 60
 )
-met <- data.table::fread(file.path( "met_all.gz"))
+met <- data.table::fread(file.path("met_all.gz"))
 
 dim(met)
 head(met)
